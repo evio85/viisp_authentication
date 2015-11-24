@@ -24,8 +24,8 @@ class ViispAuthentication
      * Gaunamas autorizacijos ticket'as
      * @return string
      */
-    public static function getAuthenticationTicket(){
-        $ticketDom = static::generateTicketDom("VSID000000000113", "kryptis_node_001", "aut");
+    public static function getAuthenticationTicket($postbackUrl = "https://localhost"){
+        $ticketDom = static::generateTicketDom("VSID000000000113", "kryptis_node_001", "aut", $postbackUrl);
         static::sign($ticketDom->firstChild);
 
         if($resp = static::sendSoap($ticketDom, "/authenticationServiceProvider/initAuthentication")){
